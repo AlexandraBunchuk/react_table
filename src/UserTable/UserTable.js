@@ -24,7 +24,7 @@ class UserTable extends Component {
         (result) => {
           this.setState({
             values: this.state.values.concat(
-              this.transUsertsForColumns(result.results)
+              this.transformUsertsForColumns(result.results)
             ),
             currentPage: this.state.currentPage + 1,
           });
@@ -38,8 +38,11 @@ class UserTable extends Component {
   componentDidMount() {
     this.loadData();
   }
-
-  transUsertsForColumns(users) {
+  /**
+   * Transform user information to row/column structure
+   * @param {} event 
+   */
+  transformUsertsForColumns(users) {
     const result = users.map((user) => {
       return { columns: [user.name.title, user.name.first, user.name.last] };
     });
