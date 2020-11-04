@@ -5,6 +5,7 @@ import Draggable from "react-draggable";
 class GenericTable extends Component {
   constructor(props) {
     super(props);
+    this.dragRef = React.createRef();
     const headersWidth = props.headerNames.reduce(
       (obj, item) =>
         Object.assign(obj, {
@@ -79,6 +80,7 @@ class GenericTable extends Component {
       if (index !== this.state.headerNames.length - 1) {
         draggableIcon = (
           <Draggable
+            nodeRef={this.dragRef}
             axis="x"
             onDrag={(event, { deltaX }) =>
               this.resizeRow({
@@ -90,7 +92,7 @@ class GenericTable extends Component {
             position={{ x: 0 }}
             zIndex={999}
           >
-            <span className="drag-handle-icon">⋮</span>
+            <span ref={this.dragRef} className="drag-handle-icon">⋮</span>
           </Draggable>
         );
       }
