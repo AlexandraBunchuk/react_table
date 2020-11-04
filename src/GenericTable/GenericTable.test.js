@@ -104,5 +104,20 @@ fdescribe("UserTableTest", () => {
     );
   });
 
+  it("should display empty table when no values is passed", () => {
+    act(() => {
+      render(
+        <GenericTable
+          headerNames={mockHeaders}
+          loadDataFunction={mockLoadDataFunction()}
+          maxWidth={700}
+        />,
+        container
+      );
+    });
+
+    expect(container.querySelector("#title0")).toBeUndefined();
+  });
+
   
 });
